@@ -9,9 +9,9 @@ prompt = 'Enter a type of classifier to run: rf (random forest), knn (k-nearest 
 classifier_type = input(prompt)
 while classifier == None:
     # A valid classifier object presents the fit(numpy.ndarray, pandas.Series) -> None and predict(pandas.Series) -> numpy.ndarray functions
-    if classifier_type in ['rf', 'random forest']:
+    if classifier_type.lower() in ['rf', 'random forest']:
         classifier = RandomForestClassifier(n_estimators=100, random_state=42)
-    elif classifier_type in ['knn', 'k-nearest neighbors']: # Increasing n_neighbors consistently decreases accuracy and most f1-scores
+    elif classifier_type.lower() in ['knn', 'k-nearest neighbors']: # Increasing n_neighbors consistently decreases accuracy and most f1-scores
         classifier = KNeighborsClassifier(n_neighbors=1)
     else:
         print('That is not a valid classifer type.\n')
