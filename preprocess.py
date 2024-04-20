@@ -20,12 +20,12 @@ def preprocess(file_path: str, test_size: float = 0.2, random_state: int = 42, s
     if split:
         # Splitting the data
         X_train, X_test, y_train, y_test = train_test_split(X_clean, y_clean, test_size=test_size, random_state=random_state)
-        X_test_scaled = scaler.transform(X_test)
     else:
         X_train, y_train = X_clean, y_clean
 
     # Standardize the data
     X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
     
     if split:
         return(X_train_scaled, X_test_scaled, y_train, y_test)
