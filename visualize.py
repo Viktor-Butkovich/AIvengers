@@ -1,4 +1,5 @@
 import preprocess
+import constants
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
@@ -7,9 +8,6 @@ import pandas as pd
 import matplotlib.patches as mpatches
 
 X_train, y_train = preprocess.preprocess('codon_usage.csv', random_state=42, split=False)
-
-kingdoms = ['arc', 'plm', 'rod', 'phg', 'pri', 'vrt', 'bct', 'pln', 'inv', 'mam', 'vrl']
-kingdom_names = ['archaea', 'plasmid', 'rodent', 'bacteriophage', 'primate', 'vertebrate', 'bacteria', 'plant', 'invertebrate', 'mammal', 'virus']
 
 def kingdom_to_color(kingdom: str):
     color = {
@@ -44,8 +42,8 @@ while not valid_visualizer:
         plt.xlabel("Reduced Dimension 1")
         plt.ylabel("Reduced Dimension 2")
 
-        handles = [mpatches.Patch(color=kingdom_to_color(kingdom), label=kingdom) for kingdom in kingdoms]
-        plt.legend(handles, kingdom_names, ncol=1, bbox_to_anchor=(1, 1))
+        handles = [mpatches.Patch(color=kingdom_to_color(kingdom), label=kingdom) for kingdom in constants.kingdoms]
+        plt.legend(handles, constants.kingdom_names, ncol=1, bbox_to_anchor=(1, 1))
 
         plt.show()
 
