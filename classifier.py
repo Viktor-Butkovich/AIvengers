@@ -16,7 +16,15 @@ while classifier == None:
     elif classifier_type.lower() in ['knn', 'k-nearest neighbors']: # Increasing n_neighbors consistently decreases accuracy and most f1-scores
         classifier = KNeighborsClassifier(n_neighbors=1)
     elif classifier_type.lower() in ['nn', 'neural network']:
-        classifier = neural_network.neural_network(input_size=X_train.shape[1], output_size=len(constants.kingdoms), categories=constants.kingdoms)
+        classifier = neural_network.neural_network(input_size=X_train.shape[1], output_size=len(constants.kingdoms), categories=constants.kingdoms,
+            #hidden_layers = [64, 48, 32, 16, 8], learning_rate=0.05 # 88 f1 accuracy / 62 f1 macro avg
+            #hidden_layers = [64, 48, 32, 16, 8], learning_rate=0.2 # 87/63
+            #hidden_layers = [64, 48, 32, 16, 8], learning_rate=0.2 # 88/65
+            #hidden_layers = [64, 64, 64, 64, 64], learning_rate=0.05, train_epochs=20 # 88/67
+            #hidden_layers = [64, 64, 64, 64, 64], learning_rate=0.05, train_epochs=40 # 88/70
+            hidden_layers = [64, 64, 64, 64, 64, 64], learning_rate=0.05, train_epochs=40 # 89/68, best so far
+            #hidden_layers = [64, 72, 80, 88, 96, 102], learning_rate=0.05, train_epochs=40 # 85/61, takes much longer to run
+        )
     else:
         print('That is not a valid classifer type.\n')
         classifier_type = input(prompt)
